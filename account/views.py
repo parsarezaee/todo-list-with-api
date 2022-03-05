@@ -1,5 +1,12 @@
-from django.http import HttpResponse
+from tempfile import template
 from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
+from .forms import UserRegisterForm
 
-def check(request):
-    return HttpResponse("check")
+
+#signup view
+class SignupUser(CreateView):
+    form_class = UserRegisterForm
+    success_url = reverse_lazy('todo:home')
+    template_name = 'account/signupuser.html'
