@@ -1,10 +1,9 @@
-from tempfile import template
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, View
 from .forms import UserRegisterForm
-from django.contrib.auth.views import LoginView, LogoutView
-
+from django.contrib.auth.views import LoginView
+from django.contrib.auth import logout
 
 
 
@@ -21,5 +20,7 @@ class LoginUser(LoginView):
     template_name = 'account/loginuser.html'
 
 #logout view 
-class LogoutUser(LogoutView):
-    template_name = 'todo/home.html'
+class LogoutUser(View):
+    def get(self, request):
+        logout(request)
+        return redirect('todo:home')
