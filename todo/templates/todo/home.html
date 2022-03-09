@@ -13,7 +13,7 @@
 <div class="row justify-content-center mt-5">
         <div class="col-md-7 text-center">
             {% if user.is_authenticated %}
-              <h1>Hello {{username}}</h1>
+              <h1>Hello {{user.username}}</h1>
               <p>You can now create todo list:)</p>
             {% else %}
                  <h1>Todo list. For you, for your goals! </h1>

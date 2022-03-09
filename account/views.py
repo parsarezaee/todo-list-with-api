@@ -11,7 +11,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 #signup view
 class SignupUser(CreateView):
     form_class = UserRegisterForm
-    success_url = reverse_lazy('todo:home')
+    success_url = reverse_lazy('account:loginuser')
     template_name = 'account/signupuser.html'
     
 
