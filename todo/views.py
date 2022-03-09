@@ -1,5 +1,7 @@
+from distutils.log import log
 from django.shortcuts import render, redirect
 from .forms import TodoForm
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -10,6 +12,7 @@ def home(request):
 
 
 #create todo
+@login_required
 def createtodo(request):
     if request.method == "GET":
         form = TodoForm
