@@ -43,7 +43,7 @@
     <ul class="navbar-nav ml-auto">
             {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a href="logout" onclick="$('#signOutBtn').click()" class="nav-link">Logout</a>
+                    <a href="{% url 'logout' %}" onclick="$('#signOutBtn').click()" class="nav-link">Logout</a>
                     <form style='display: none;' method="POST" action="logoutuser">
                         {% csrf_token %}
                         <button id="signOutBtn" type="submit">Logout</button>
@@ -51,10 +51,10 @@
                 </li>
             {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'account:signupuser' %}">Sign Up</a>
+                    {% comment %} <a class="nav-link" href="{% url 'account:signupuser' %}">Sign Up</a> {% endcomment %}
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'account:loginuser' %}">Login</a>
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
                 </li>
             {% endif %}
         </ul>

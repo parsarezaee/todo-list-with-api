@@ -10,17 +10,17 @@ from django.contrib.auth import logout
 #signup view
 class SignupUser(CreateView):
     form_class = UserRegisterForm
-    success_url = reverse_lazy('account:loginuser')
+    success_url = reverse_lazy('login')
     template_name = 'account/signupuser.html'
     
 
 
-#login view 
-class LoginUser(LoginView):
-    template_name = 'account/loginuser.html'
+# #login view 
+# class LoginUser(LoginView):
+#     template_name = 'account/loginuser.html'
 
-#logout view 
-class LogoutUser(View):
-    def get(self, request):
-        logout(request)
-        return redirect('todo:home')
+# #logout view 
+# class LogoutUser(View):
+#     def get(self, request):
+#         logout(request)
+#         return redirect('todo:home')
