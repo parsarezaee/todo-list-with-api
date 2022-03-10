@@ -29,7 +29,7 @@
         <ul class="navbar-nav mr-auto">
 
                 <li class="nav-item {{ current }}">
-                    <a class="nav-link" href="currenttodos">Current</a>
+                    <a class="nav-link" href="{% url 'todo:currenttodos' %}">Current</a>
                 </li>
                 <li class="nav-item {{ completed }}">
                     <a class="nav-link" href="completedtodos">Completed</a>
