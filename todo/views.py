@@ -1,4 +1,5 @@
 from distutils.log import log
+from webbrowser import get
 from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
 from .forms import TodoForm
@@ -64,4 +65,13 @@ def completetodo(request, todo_pk):
     if request.method == 'POST':
         todo.datecompleted = timezone.now()
         todo.save()
+        return redirect('todo:currenttodos')
+
+
+#delete todo
+@login_required
+def deletetodo(request, todo_pk):
+    todo = get_object_or_404(TodoModel, pk=todo_pk, user=request.user)
+    if request.method == 'POST':
+        todo.delete()
         return redirect('todo:currenttodos')
