@@ -1,5 +1,6 @@
 from distutils.log import log
 from django.shortcuts import get_object_or_404, render, redirect
+from django.utils import timezone
 from .forms import TodoForm
 from django.contrib.auth.decorators import login_required
 from .models import TodoModel
@@ -51,3 +52,16 @@ def viewtodo(request, todo_pk):
             return redirect('todo:currenttodos')
         except ValueError:
             return render(request, 'todo/viewtodo.html', {'todo':todo, 'form':form, 'error':'Bad info'})
+
+        
+
+
+
+#show completed todos for user
+@login_required
+def completetodo(request, todo_pk):
+    todo = get_object_or_404(TodoModel, pk=todo_pk, user=request.user)
+    if request.method == 'POST':
+        todo.datecompleted = timezone.now()
+        todo.save()
+        return redirect('todo:currenttodos')
