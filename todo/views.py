@@ -40,6 +40,17 @@ def currenttodos(request):
 
 
 
+#show completed todos
+@login_required
+def completedtodos(request):
+    todos = TodoModel.objects.filter(user=request.user, datecompleted__isnull = False).order_by('-datecompleted')
+    return render(request, 'todo/completedtodos.html', {'todos':todos})
+
+
+
+
+
+
 @login_required
 def viewtodo(request, todo_pk):
     todo = get_object_or_404(TodoModel, pk=todo_pk, user=request.user )
@@ -66,6 +77,7 @@ def completetodo(request, todo_pk):
         todo.datecompleted = timezone.now()
         todo.save()
         return redirect('todo:currenttodos')
+
 
 
 #delete todo

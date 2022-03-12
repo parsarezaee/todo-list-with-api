@@ -32,7 +32,7 @@
                     <a class="nav-link" href="{% url 'todo:currenttodos' %}">Current</a>
                 </li>
                 <li class="nav-item {{ completed }}">
-                    <a class="nav-link" href="completedtodos">Completed</a>
+                    <a class="nav-link" href="{% url 'todo:completedtodos' %}">Completed</a>
                 </li>
                 <li class="nav-item {{ create }}">
                     <a class="nav-link" href="{% url 'todo:createtodo' %}">Create</a>
